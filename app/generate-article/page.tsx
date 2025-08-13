@@ -7,7 +7,7 @@ export default function GenerateArticle() {
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
 
   const handleGenerateArticle = async () => {
-    const response = await fetch("/api/generate-article", {
+    const response = await fetch("/api/generate/keywords", {
       method: "POST",
     });
     const data = await response.json();

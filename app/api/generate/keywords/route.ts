@@ -2,7 +2,6 @@ import { db } from "@/db";
 import { xinhongNotes } from "@/db/schema";
 import { extractJsonFromText } from "@/lib/llm-utils";
 import { is_explicit_title } from "@/prompts/generate-article";
-import { webSearch } from "@/service/web-search";
 import { deepseek } from "@/utils/llm";
 import { streamText } from "ai";
 import { eq } from "drizzle-orm";
@@ -46,13 +45,13 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const webSearchResult = await webSearch(searchQueryJson.search_query);
+  // const webSearchResult = await webSearch(searchQueryJson.search_query);
 
   return new NextResponse(
     JSON.stringify({
       search_query: searchQueryJson.search_query,
       reason: searchQueryJson.reason,
-      web_search_result: webSearchResult,
+      // web_search_result: webSearchResult,
     }),
     {
       headers: {
