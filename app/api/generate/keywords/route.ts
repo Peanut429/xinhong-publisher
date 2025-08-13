@@ -10,6 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 interface SearchQuery {
   search_query: string;
   reason: string;
+  topic: string[];
 }
 
 export async function POST(request: NextRequest) {
@@ -51,6 +52,8 @@ export async function POST(request: NextRequest) {
     JSON.stringify({
       search_query: searchQueryJson.search_query,
       reason: searchQueryJson.reason,
+      topic: note.tags,
+
       // web_search_result: webSearchResult,
     }),
     {
