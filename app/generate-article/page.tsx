@@ -1,13 +1,17 @@
 "use client";
 
-import { TextArea } from "@/components/base/textarea/textarea";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 export default function GenerateArticle() {
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
   const [topic, setTopic] = useState<string[]>([]);
-  const [searchContent, setSearchContent] = useState<string>("");
+  const [searchContent, setSearchContent] = useState<
+    {
+      name: string;
+      snippet: string;
+    }[]
+  >([]);
   const [article, setArticle] = useState<{
     title: string;
     content: string;
@@ -21,12 +25,13 @@ export default function GenerateArticle() {
     const data = await response.json();
     setSearchQuery(data.search_query);
     setTopic(data.topic);
+    setSearchContent(data.search_content);
   };
 
   const handleGenerateArticle = async () => {
     const response = await fetch("/api/generate/article", {
       method: "POST",
-      body: JSON.stringify({ search_query: searchQuery, topics: topic }),
+      body: JSON.stringify({ search_content: searchContent, topics: topic }),
     });
     const data = await response.json();
     setArticle(data);
@@ -68,18 +73,9 @@ export default function GenerateArticle() {
       ) : null}
 
       {searchQuery && (
-        <div className="flex flex-col gap-2 w-full">
-          <TextArea
-            label="参考内容"
-            textAreaClassName="bg-transparent"
-            rows={10}
-            value={searchContent}
-            onChange={(e) => setSearchContent(e)}
-          />
-          <Button className="w-fit" onClick={handleGenerateArticle}>
-            生成文章
-          </Button>
-        </div>
+        <Button className="w-fit" onClick={handleGenerateArticle}>
+          生成文章
+        </Button>
       )}
       {article && (
         <div className="flex flex-col gap-2 w-full">
