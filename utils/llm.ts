@@ -42,3 +42,7 @@ export async function createWebSearchMcpClient() {
 
   return httpClient;
 }
+export const webSearch = createDeepSeek({
+  apiKey: "sk-dff2e9dc60824e2f8c775c4649ad623d",
+  baseURL: "https://api.bochaai.com/v1/web-search",
+});

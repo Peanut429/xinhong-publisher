@@ -5,19 +5,95 @@ import { useState } from "react";
 
 export default function GenerateArticle() {
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
+  const [topic, setTopic] = useState<string[]>([]);
+  const [searchContent, setSearchContent] = useState<
+    {
+      name: string;
+      snippet: string;
+    }[]
+  >([]);
+  const [article, setArticle] = useState<{
+    title: string;
+    content: string;
+    topic: string[];
+  } | null>(null);
 
-  const handleGenerateArticle = async () => {
+  const handleGenerateKeywords = async () => {
     const response = await fetch("/api/generate/keywords", {
       method: "POST",
     });
     const data = await response.json();
     setSearchQuery(data.search_query);
+    setTopic(data.topic);
+    setSearchContent(data.search_content);
+  };
+
+  const handleGenerateArticle = async () => {
+    const response = await fetch("/api/generate/article", {
+      method: "POST",
+      body: JSON.stringify({ search_content: searchContent, topics: topic }),
+    });
+    const data = await response.json();
+    setArticle(data);
+  };
+
+  const handleGenerateImage = async () => {
+    const response = await fetch("/api/generate/image", {
+      method: "POST",
+      body: JSON.stringify({
+        prompt: article?.title,
+        width: 1242,
+        height: 1660,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
-    <div>
-      <Button onClick={handleGenerateArticle}>Generate Article</Button>
-      <div>{searchQuery}</div>
+    <div className="max-w-[1024px] h-screen flex flex-col gap-4 p-5">
+      <Button onClick={handleGenerateKeywords} className="w-fit">
+        生成关键词
+      </Button>
+      {searchQuery && (
+        <div className="flex">
+          <div className="font-bold">关键词：</div>
+          {searchQuery}
+        </div>
+      )}
+      {topic.length > 0 ? (
+        <div className="flex">
+          <div className="font-bold">原文话题：</div>
+          <div className="flex flex-wrap gap-2">
+            {topic.map((t) => (
+              <div key={t}>{t}</div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {searchQuery && (
+        <Button className="w-fit" onClick={handleGenerateArticle}>
+          生成文章
+        </Button>
+      )}
+      {article && (
+        <div className="flex flex-col gap-2 w-full">
+          <div className="font-bold">标题：</div>
+          <div>{article.title}</div>
+          <Button className="w-fit" onClick={handleGenerateImage}>
+            生成首图
+          </Button>
+          <div className="font-bold">内容：</div>
+          <div>{article.content}</div>
+          <div className="font-bold">话题：</div>
+          <div className="flex flex-wrap gap-2">
+            {article.topic.map((t) => (
+              <div key={t}>{t}</div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -15,6 +15,7 @@
     "@modelcontextprotocol/sdk": "^1.17.2",
     "@radix-ui/react-slot": "^1.2.3",
     "@tanstack/react-query": "^5.84.2",
+    "@untitledui/icons": "^0.0.19",
     "ai": "^5.0.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -23,6 +24,7 @@
     "next": "15.4.6",
     "pg": "^8.16.3",
     "react": "19.1.0",
+    "react-aria-components": "^1.11.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "^3.3.1",
     "xlsx": "^0.18.5"
