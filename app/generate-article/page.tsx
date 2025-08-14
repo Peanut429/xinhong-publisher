@@ -32,6 +32,19 @@ export default function GenerateArticle() {
     setArticle(data);
   };
 
+  const handleGenerateImage = async () => {
+    const response = await fetch("/api/generate/image", {
+      method: "POST",
+      body: JSON.stringify({
+        prompt: article?.title,
+        width: 1242,
+        height: 1660,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <div className="max-w-[1024px] h-screen flex flex-col gap-4 p-5">
       <Button onClick={handleGenerateKeywords} className="w-fit">
@@ -72,6 +85,9 @@ export default function GenerateArticle() {
         <div className="flex flex-col gap-2 w-full">
           <div className="font-bold">标题：</div>
           <div>{article.title}</div>
+          <Button className="w-fit" onClick={handleGenerateImage}>
+            生成首图
+          </Button>
           <div className="font-bold">内容：</div>
           <div>{article.content}</div>
           <div className="font-bold">话题：</div>
