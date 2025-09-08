@@ -1,10 +1,11 @@
-export async function webSearch(searchQuery: string) {
-  const response = await fetch("http://47.100.99.13:8011/bing/search", {
+export async function webSearch(keywords: string) {
+  const response = await fetch("https://api.bochaai.com/v1/web-search", {
     method: "POST",
-    body: JSON.stringify({
-      keyword: searchQuery,
-      count: 10,
-    }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer sk-dff2e9dc60824e2f8c775c4649ad623d",
+    },
+    body: JSON.stringify({ query: keywords }),
   });
 
   const data = await response.json();

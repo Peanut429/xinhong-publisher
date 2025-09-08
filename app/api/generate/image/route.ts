@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
 
     // 构建请求参数，设置默认值
     const imageParams: T2IGenerateImageParam = {
-      prompt: `淡黄色渐变背景，中央是黑色细体的中号中文文字“${body.prompt}”，极简风格，没有其他字。`,
+      prompt: `淡黄色渐变背景，标题文本“${body.prompt}”，极简风格，文字居中清晰，字体加粗易读。。`,
       width: body.width || 1328,
       height: body.height || 1328,
       scale: body.scale || 2.5,
@@ -136,7 +136,6 @@ export async function POST(request: NextRequest) {
     );
 
     const result = await response.json();
-    console.log(result);
 
     // 检查返回结果是否包含taskId (在data字段中)
     if (result && result.code === 200 && result.data) {

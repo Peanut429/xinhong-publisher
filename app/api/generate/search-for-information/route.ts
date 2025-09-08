@@ -16,12 +16,9 @@ export async function POST(request: NextRequest) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // TODO: move API key to env var
         Authorization: "Bearer sk-dff2e9dc60824e2f8c775c4649ad623d",
       },
-      body: JSON.stringify({
-        query: keywords,
-      }),
+      body: JSON.stringify({ query: keywords }),
     });
 
     if (!response.ok) {

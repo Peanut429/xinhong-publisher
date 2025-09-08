@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { xinhongNotes } from "@/db/schema";
 import { validateApiData } from "@/utils/validation";
+import { inArray } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -32,28 +33,57 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 批量插入数据到数据库
-    try {
-      await db.insert(xinhongNotes).values(validData);
-    } catch (dbError) {
-      console.error("数据库插入失败:", dbError);
-      return NextResponse.json(
-        {
-          error: "数据保存到数据库失败",
-          details: dbError instanceof Error ? dbError.message : "未知错误",
-        },
-        { status: 500 }
-      );
+    // 检查已存在的数据
+    const validIds = validData.map((item) => item.id);
+    const existingIds = await db
+      .select({ id: xinhongNotes.id })
+      .from(xinhongNotes)
+      .where(inArray(xinhongNotes.id, validIds));
+
+    const existingIdSet = new Set(existingIds.map((item) => item.id));
+
+    // 过滤掉已存在的数据
+    const newData = validData.filter((item) => !existingIdSet.has(item.id));
+    const skippedData = validData.filter((item) => existingIdSet.has(item.id));
+
+    // 批量插入新数据
+    let insertedCount = 0;
+    if (newData.length > 0) {
+      try {
+        await db.insert(xinhongNotes).values(newData);
+        // .onConflictDoNothing({
+        //   target: [xinhongNotes.id],
+        // });
+        insertedCount = newData.length;
+      } catch (dbError) {
+        console.error("数据库插入失败:", dbError);
+        return NextResponse.json(
+          {
+            error: "数据保存到数据库失败",
+            details: dbError instanceof Error ? dbError.message : "未知错误",
+          },
+          { status: 500 }
+        );
+      }
     }
 
     return NextResponse.json({
-      message: "数据导入成功",
+      message: "数据导入完成",
       summary: {
         total: data.length,
-        success: validData.length,
+        valid: validData.length,
+        inserted: insertedCount,
+        skipped: skippedData.length,
         errors: errors.length,
       },
-      errors: errors,
+      details: {
+        skipped: skippedData.map((item) => ({
+          id: item.id,
+          title: item.title,
+          reason: "数据已存在",
+        })),
+        errors: errors,
+      },
     });
   } catch (error) {
     console.error("导入过程中发生错误:", error);

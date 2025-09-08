@@ -2,6 +2,7 @@
 
 import { createDeepSeek } from "@ai-sdk/deepseek";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createOpenAI } from "@ai-sdk/openai";
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
 import { experimental_createMCPClient } from "ai";
 
@@ -42,7 +43,13 @@ export async function createWebSearchMcpClient() {
 
   return httpClient;
 }
+
 export const webSearch = createDeepSeek({
   apiKey: "sk-dff2e9dc60824e2f8c775c4649ad623d",
   baseURL: "https://api.bochaai.com/v1/web-search",
+});
+
+export const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY ?? "",
+  baseURL: "http://40.76.59.42/forward/openai/v1",
 });

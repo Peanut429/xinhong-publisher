@@ -10,6 +10,9 @@ export default function Home() {
       <Link href="/import-data" className="cursor-pointer">
         <Button>Import Data</Button>
       </Link>
+      <Link href="/write" className="cursor-pointer">
+        <Button>Write</Button>
+      </Link>
     </nav>
   );
 }
