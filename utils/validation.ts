@@ -51,6 +51,10 @@ export function validateNoteData(
       authorAccount: data.authorAccount?.trim() || "",
       authorHomepage: data.authorHomepage?.trim() || "",
       noteClassification: data.noteClassification?.trim() || "",
+      comment: parseNumber(data.comment, "comment"),
+      like: parseNumber(data.like, "like"),
+      collect: parseNumber(data.collect, "collect"),
+      used: data.used ?? false,
     };
 
     return { isValid: true, processedData };
@@ -86,6 +90,15 @@ export function validateApiData(data: any[]): ValidationResult {
   });
 
   return { validData, errors };
+}
+
+function parseNumber(value: any, fieldName: string): number {
+  const strValue = value?.toString().trim() || "0";
+  const num = parseInt(strValue, 10);
+  if (isNaN(num)) {
+    throw new Error(`${fieldName}必须是有效的数字字符串`);
+  }
+  return num;
 }
 
 /**
@@ -143,6 +156,10 @@ export function validateExcelRowData(
       authorAccount: row["账号小红书号"]?.trim() || "",
       authorHomepage: row["账号主页链接"]?.trim() || "",
       noteClassification: row["笔记分类"]?.trim() || "",
+      comment: parseNumber(row["评论"], "评论"),
+      like: parseNumber(row["点赞"], "点赞"),
+      collect: parseNumber(row["收藏"], "收藏"),
+      used: false,
     };
 
     return { isValid: true, processedData };

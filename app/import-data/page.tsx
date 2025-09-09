@@ -282,7 +282,7 @@ export default function ImportDataPage() {
                         {row["笔记标题"]}
                       </td>
                       <td className="px-3 py-2 text-sm text-gray-900 font-mono">
-                        {row["笔记Id"]}
+                        {row["笔记id"]}
                       </td>
                       <td className="px-3 py-2 text-sm text-gray-900">
                         {row["笔记分类"]}
@@ -357,7 +357,7 @@ export default function ImportDataPage() {
         <div className="text-sm text-blue-700 space-y-1">
           <p>
             •
-            第一行必须包含以下列标题：笔记标题、笔记Id、笔记分类、笔记内容、话题、发布时间、账号昵称、账号主页链接、账号小红书号
+            第一行必须包含以下列标题：笔记标题、笔记id、笔记分类、笔记内容、话题、发布时间、账号昵称、账号主页链接、账号小红书号、点赞、收藏、评论
           </p>
           <p>• 话题列应为JSON字符串格式，如：["标签1", "标签2"]</p>
           <p>• 发布时间格式：YYYY-MM-DD HH:mm:ss</p>

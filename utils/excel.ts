@@ -12,6 +12,9 @@ export interface ExcelRowData {
   账号昵称: string;
   账号主页链接: string;
   账号小红书号: string;
+  点赞: string;
+  收藏: string;
+  评论: string;
 }
 
 export interface ProcessedExcelData {
@@ -57,6 +60,9 @@ export function parseExcelFile(file: File): Promise<ExcelRowData[]> {
           "账号昵称",
           "账号主页链接",
           "账号小红书号",
+          "点赞",
+          "收藏",
+          "评论",
         ];
 
         const missingColumns = requiredColumns.filter(
@@ -83,6 +89,9 @@ export function parseExcelFile(file: File): Promise<ExcelRowData[]> {
             账号昵称: row[headers.indexOf("账号昵称")] || "",
             账号主页链接: row[headers.indexOf("账号主页链接")] || "",
             账号小红书号: row[headers.indexOf("账号小红书号")] || "",
+            点赞: row[headers.indexOf("阅读")] || "",
+            收藏: row[headers.indexOf("收藏")] || "",
+            评论: row[headers.indexOf("评论")] || "",
           };
 
           rows.push(rowData);
