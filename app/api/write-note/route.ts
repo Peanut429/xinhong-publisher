@@ -7,7 +7,7 @@ import {
   generate_selling_point,
   is_explicit_title,
 } from "@/prompts/generate-article";
-import { rewriteText } from "@/service/generate-image";
+import { generateImageWithQwen } from "@/service/qwen-image";
 import { webSearch } from "@/service/web-search";
 import { deepseek } from "@/utils/llm";
 import { streamText } from "ai";
@@ -40,7 +40,8 @@ export async function POST(request: NextRequest) {
   const notes = await db
     .select()
     .from(xinhongNotes)
-    .orderBy(desc(xinhongNotes.createTimestamp))
+    // 根据时间和评论数排序
+    .orderBy(desc(xinhongNotes.createTimestamp), desc(xinhongNotes.comment))
     .where(eq(xinhongNotes.used, false));
 
   // 选参考
@@ -141,8 +142,12 @@ export async function POST(request: NextRequest) {
   // 生成图片
   const regexp =
     /[^\u4e00-\u9fa5a-zA-Z0-9\s\.,!?;:()\-\[\]{}'"/@#$%^&*+=<>|\\~`_]/g;
-  const image = await rewriteText(
-    articleJson.title.replace(regexp, "").replace(/"/g, '"').trim()
+  // const image = await rewriteText(
+  //   articleJson.title.replace(regexp, "").replace(/"/g, '"').trim()
+  // );
+  const image = await generateImageWithQwen(
+    articleJson.title.replace(regexp, "").replace(/"/g, '"').trim(),
+    articleJson.content
   );
 
   const content =
@@ -160,7 +165,8 @@ export async function POST(request: NextRequest) {
       phoneNumber: phoneNumber,
       reportId: "",
       title: articleJson.title,
-      images: ["https://qianyi-aigc.tos-cn-shanghai.volces.com/" + image],
+      // images: ["https://qianyi-aigc.tos-cn-shanghai.volces.com/" + image],
+      images: [image],
       content: content,
       topic: [...articleJson.topic, ...sellingPointJson.topic].slice(0, 10),
       createTimestamp: Date.now(),

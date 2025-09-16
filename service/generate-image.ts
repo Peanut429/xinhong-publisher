@@ -57,7 +57,7 @@ export async function generateImage(title: string) {
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzU2OTg1ODU2OTgwfQ.25Y3VP7BdsodhBbsZ7TnSjdWQ-MdYsfb1pg1Lj5HrX0",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzU4MzY2NjQ1NDQ5fQ.v63Ju-wGQhMrKaf45gnIUHP9MW7Oi-TNOGKYpEANTpw",
       },
       body: JSON.stringify(imageParams),
     }
@@ -74,8 +74,6 @@ export async function generateImage(title: string) {
   const taskId = result.data;
 
   const taskResults = await pollTaskStatus(taskId);
-
-  console.log(taskResults);
 
   if (!taskResults) {
     throw new Error("Failed to generate image");
@@ -105,7 +103,7 @@ export async function rewriteText(title: string) {
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzU2OTg1ODU2OTgwfQ.25Y3VP7BdsodhBbsZ7TnSjdWQ-MdYsfb1pg1Lj5HrX0",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzU4MzY2NjQ1NDQ5fQ.v63Ju-wGQhMrKaf45gnIUHP9MW7Oi-TNOGKYpEANTpw",
       },
       body: JSON.stringify(imageParams),
     }
