@@ -7,7 +7,7 @@ import {
   generate_selling_point,
   is_explicit_title,
 } from "@/prompts/generate-article";
-import { generateImageWithQwen } from "@/service/qwen-image";
+import { rewriteText } from "@/service/generate-image";
 import { webSearch } from "@/service/web-search";
 import { deepseek } from "@/utils/llm";
 import { streamText } from "ai";
@@ -44,15 +44,10 @@ export async function POST(request: NextRequest) {
     .orderBy(desc(xinhongNotes.createTimestamp), desc(xinhongNotes.comment))
     .where(eq(xinhongNotes.used, false));
 
-  // 选参考
-  // const randomIndex = Math.floor(Math.random() * notes.length);
-  // const note = notes[randomIndex];
   const note = notes[0];
 
   // 生成搜索关键词
   const prompt = is_explicit_title(note.title, note.content);
-
-  console.log(prompt);
 
   const result = streamText({
     model: deepseek("deepseek-ai/DeepSeek-V3"),
@@ -61,7 +56,6 @@ export async function POST(request: NextRequest) {
 
   let searchQueryText = "";
   for await (const textPart of result.textStream) {
-    console.log(textPart);
     searchQueryText += textPart;
   }
 
@@ -142,13 +136,16 @@ export async function POST(request: NextRequest) {
   // 生成图片
   const regexp =
     /[^\u4e00-\u9fa5a-zA-Z0-9\s\.,!?;:()\-\[\]{}'"/@#$%^&*+=<>|\\~`_]/g;
-  // const image = await rewriteText(
+  const image = await rewriteText(
+    articleJson.title.replace(regexp, "").replace(/"/g, '"').trim()
+  );
+  // const image = await generateImageWithQwen(
+  //   articleJson.title.replace(regexp, "").replace(/"/g, '"').trim(),
+  //   articleJson.content
+  // );
+  // const image = await editImageWithQwen(
   //   articleJson.title.replace(regexp, "").replace(/"/g, '"').trim()
   // );
-  const image = await generateImageWithQwen(
-    articleJson.title.replace(regexp, "").replace(/"/g, '"').trim(),
-    articleJson.content
-  );
 
   const content =
     articleJson.content.replace(/#.*\s?/g, "") +
@@ -165,8 +162,8 @@ export async function POST(request: NextRequest) {
       phoneNumber: phoneNumber,
       reportId: "",
       title: articleJson.title,
-      // images: ["https://qianyi-aigc.tos-cn-shanghai.volces.com/" + image],
-      images: [image],
+      images: ["https://qianyi-aigc.tos-cn-shanghai.volces.com/" + image],
+      // images: [image],
       content: content,
       topic: [...articleJson.topic, ...sellingPointJson.topic].slice(0, 10),
       createTimestamp: Date.now(),

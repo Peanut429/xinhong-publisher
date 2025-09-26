@@ -5,7 +5,7 @@ export async function webSearch(keywords: string) {
       "Content-Type": "application/json",
       Authorization: "Bearer sk-dff2e9dc60824e2f8c775c4649ad623d",
     },
-    body: JSON.stringify({ query: keywords }),
+    body: JSON.stringify({ query: keywords, count: 20 }),
   });
 
   const data = await response.json();

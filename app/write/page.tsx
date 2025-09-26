@@ -147,8 +147,8 @@ export default function WritePage() {
           .join(" "),
       ];
       setNote(noteInfo.join("\n\n\n"));
-      // setImage("https://qianyi-aigc.tos-cn-shanghai.volces.com/" + data.image);
-      setImage(data.image);
+      setImage("https://qianyi-aigc.tos-cn-shanghai.volces.com/" + data.image);
+      // setImage(data.image);
     },
   });
 
