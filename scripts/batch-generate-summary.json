@@ -1,0 +1,245 @@
+{
+  "startTime": "2025-10-20T12:08:40.156Z",
+  "endTime": "2025-10-20T12:46:55.280Z",
+  "totalTime": 2295123,
+  "totalSuccess": 30,
+  "totalFailed": 0,
+  "totalExpected": 30,
+  "successRate": 100,
+  "results": [
+    {
+      "accountId": "e61149df-e288-47f7-8ab6-111ddf145505",
+      "accountName": "王娜",
+      "phoneNumber": "15639880395",
+      "success": [
+        {
+          "articleIndex": 1,
+          "title": "无标题",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王娜-article-1-2025-10-20T12-09-59-014Z.json",
+          "timestamp": "2025-10-20T12:09:59.017Z"
+        },
+        {
+          "articleIndex": 2,
+          "title": "长安糯玉米电子手刹自动功能讲解",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王娜-article-2-2025-10-20T12-11-04-502Z.json",
+          "timestamp": "2025-10-20T12:11:04.503Z"
+        },
+        {
+          "articleIndex": 3,
+          "title": "国内年检这么坑，国外是不是都不用年检的",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王娜-article-3-2025-10-20T12-12-26-474Z.json",
+          "timestamp": "2025-10-20T12:12:26.475Z"
+        },
+        {
+          "articleIndex": 4,
+          "title": "无标题",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王娜-article-4-2025-10-20T12-14-09-644Z.json",
+          "timestamp": "2025-10-20T12:14:09.644Z"
+        },
+        {
+          "articleIndex": 5,
+          "title": "你知道一百年前的行人保护装置长什么样吗",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王娜-article-5-2025-10-20T12-15-23-480Z.json",
+          "timestamp": "2025-10-20T12:15:23.482Z"
+        }
+      ],
+      "failed": [],
+      "totalArticles": 5
+    },
+    {
+      "accountId": "8134e653-36c1-426f-b219-4318a7b2bfe6",
+      "accountName": "王佳玲",
+      "phoneNumber": "13142102709",
+      "success": [
+        {
+          "articleIndex": 1,
+          "title": "欧洲这么多中国车，你敢相信？",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王佳玲-article-1-2025-10-20T12-16-33-934Z.json",
+          "timestamp": "2025-10-20T12:16:33.935Z"
+        },
+        {
+          "articleIndex": 2,
+          "title": "固态电池即将到来，纯电续航超过 1200 公里",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王佳玲-article-2-2025-10-20T12-17-43-715Z.json",
+          "timestamp": "2025-10-20T12:17:43.717Z"
+        },
+        {
+          "articleIndex": 3,
+          "title": "汽车玻璃油膜怎么去除？车窗快速去油膜教程",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王佳玲-article-3-2025-10-20T12-19-12-946Z.json",
+          "timestamp": "2025-10-20T12:19:12.950Z"
+        },
+        {
+          "articleIndex": 4,
+          "title": "汽车售后市场调研",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王佳玲-article-4-2025-10-20T12-20-25-103Z.json",
+          "timestamp": "2025-10-20T12:20:25.106Z"
+        },
+        {
+          "articleIndex": 5,
+          "title": "新能源卷王，10万级精品纯电SUV闭眼入",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/王佳玲-article-5-2025-10-20T12-21-32-629Z.json",
+          "timestamp": "2025-10-20T12:21:32.633Z"
+        }
+      ],
+      "failed": [],
+      "totalArticles": 5
+    },
+    {
+      "accountId": "f60b7f06-ce6a-4ab4-8fbf-2737257407f0",
+      "accountName": "萤火",
+      "phoneNumber": "18901643836",
+      "success": [
+        {
+          "articleIndex": 1,
+          "title": "倒车入库详细教学！从此再也不怕刮蹭啦！",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/萤火-article-1-2025-10-20T12-22-44-991Z.json",
+          "timestamp": "2025-10-20T12:22:44.993Z"
+        },
+        {
+          "articleIndex": 2,
+          "title": "再也不买特斯拉？开六年亏出一台保时捷！",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/萤火-article-2-2025-10-20T12-24-21-365Z.json",
+          "timestamp": "2025-10-20T12:24:21.370Z"
+        },
+        {
+          "articleIndex": 3,
+          "title": "极氪9X开了2天，有什么想问的？",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/萤火-article-3-2025-10-20T12-25-34-543Z.json",
+          "timestamp": "2025-10-20T12:25:34.544Z"
+        },
+        {
+          "articleIndex": 4,
+          "title": "纯电智能完爆混动？15万级最强家轿之争！",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/萤火-article-4-2025-10-20T12-26-54-415Z.json",
+          "timestamp": "2025-10-20T12:26:54.419Z"
+        },
+        {
+          "articleIndex": 5,
+          "title": "丐版Model Y，减配但更香？",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/萤火-article-5-2025-10-20T12-28-39-812Z.json",
+          "timestamp": "2025-10-20T12:28:39.816Z"
+        }
+      ],
+      "failed": [],
+      "totalArticles": 5
+    },
+    {
+      "accountId": "55c8c668-54f3-4d31-a031-e9fa723c74aa",
+      "accountName": "七月",
+      "phoneNumber": "18901764336",
+      "success": [
+        {
+          "articleIndex": 1,
+          "title": "无标题",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/七月-article-1-2025-10-20T12-29-39-271Z.json",
+          "timestamp": "2025-10-20T12:29:39.275Z"
+        },
+        {
+          "articleIndex": 2,
+          "title": "单程通勤5公里，买这个车够用吗",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/七月-article-2-2025-10-20T12-30-54-127Z.json",
+          "timestamp": "2025-10-20T12:30:54.129Z"
+        },
+        {
+          "articleIndex": 3,
+          "title": "无标题",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/七月-article-3-2025-10-20T12-32-11-362Z.json",
+          "timestamp": "2025-10-20T12:32:11.365Z"
+        },
+        {
+          "articleIndex": 4,
+          "title": "红绿灯路口掉头，怎么走才不扣分",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/七月-article-4-2025-10-20T12-33-16-514Z.json",
+          "timestamp": "2025-10-20T12:33:16.518Z"
+        },
+        {
+          "articleIndex": 5,
+          "title": "万能斜线停车法～干货",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/七月-article-5-2025-10-20T12-34-27-614Z.json",
+          "timestamp": "2025-10-20T12:34:27.618Z"
+        }
+      ],
+      "failed": [],
+      "totalArticles": 5
+    },
+    {
+      "accountId": "f60b7f06-ce6a-4ab4-8fbf-2737257407gh",
+      "accountName": "小李说车",
+      "phoneNumber": "13386027991",
+      "success": [
+        {
+          "articleIndex": 1,
+          "title": "为什么新能源车的设计都一样？",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/小李说车-article-1-2025-10-20T12-35-41-706Z.json",
+          "timestamp": "2025-10-20T12:35:41.710Z"
+        },
+        {
+          "articleIndex": 2,
+          "title": "千万别为了省钱买电车",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/小李说车-article-2-2025-10-20T12-36-58-293Z.json",
+          "timestamp": "2025-10-20T12:36:58.295Z"
+        },
+        {
+          "articleIndex": 3,
+          "title": "从中国玄学角度剖析一下，路虎能买吗？",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/小李说车-article-3-2025-10-20T12-38-08-973Z.json",
+          "timestamp": "2025-10-20T12:38:08.974Z"
+        },
+        {
+          "articleIndex": 4,
+          "title": "安全变道，如何调整后视镜～",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/小李说车-article-4-2025-10-20T12-39-19-532Z.json",
+          "timestamp": "2025-10-20T12:39:19.533Z"
+        },
+        {
+          "articleIndex": 5,
+          "title": "深圳违停处罚有多狠？",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/小李说车-article-5-2025-10-20T12-40-37-612Z.json",
+          "timestamp": "2025-10-20T12:40:37.617Z"
+        }
+      ],
+      "failed": [],
+      "totalArticles": 5
+    },
+    {
+      "accountId": "f60b7f06-ce6a-4ab4-8fbf-2737257407gf",
+      "accountName": "梅子说车",
+      "phoneNumber": "18918722354",
+      "success": [
+        {
+          "articleIndex": 1,
+          "title": "红绿灯??路口掉头，干货分享～",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/梅子说车-article-1-2025-10-20T12-41-39-962Z.json",
+          "timestamp": "2025-10-20T12:41:39.964Z"
+        },
+        {
+          "articleIndex": 2,
+          "title": "闯红灯如何判定，必看～",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/梅子说车-article-2-2025-10-20T12-43-03-649Z.json",
+          "timestamp": "2025-10-20T12:43:03.652Z"
+        },
+        {
+          "articleIndex": 3,
+          "title": "判断车轮位置，记住这几个方法！",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/梅子说车-article-3-2025-10-20T12-44-17-243Z.json",
+          "timestamp": "2025-10-20T12:44:17.246Z"
+        },
+        {
+          "articleIndex": 4,
+          "title": "阿尔法罗密欧 q4的鼻祖",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/梅子说车-article-4-2025-10-20T12-45-48-510Z.json",
+          "timestamp": "2025-10-20T12:45:48.512Z"
+        },
+        {
+          "articleIndex": 5,
+          "title": "侧方位停车不好把控～干货分享",
+          "filePath": "/Users/fuhui/demos/xinhong-publisher/scripts/generated-articles/梅子说车-article-5-2025-10-20T12-46-52-272Z.json",
+          "timestamp": "2025-10-20T12:46:52.274Z"
+        }
+      ],
+      "failed": [],
+      "totalArticles": 5
+    }
+  ]
+}

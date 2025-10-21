@@ -50,6 +50,9 @@ const templates = [
   },
 ];
 
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzYxMjI0NDgzODI0fQ.nMt5e96c6prWP3KGJDnszLowriEVHY_wzyDEmgH_VrA";
+
 export async function generateImage(title: string) {
   // 构建请求参数，设置默认值
   const imageParams = {
@@ -59,6 +62,7 @@ export async function generateImage(title: string) {
     req_key: "jimeng_t2i_v30",
     use_pre_llm: false,
     batchSize: 1,
+    scale: 0.5,
   };
 
   // 调用外部API
@@ -69,8 +73,7 @@ export async function generateImage(title: string) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzU4MzY2NjQ1NDQ5fQ.v63Ju-wGQhMrKaf45gnIUHP9MW7Oi-TNOGKYpEANTpw",
+        Authorization: token,
       },
       body: JSON.stringify(imageParams),
     }
@@ -103,13 +106,13 @@ export async function rewriteText(title: string) {
 
   // 构建请求参数，设置默认值
   const imageParams = {
-    prompt: prompt,
-    image_urls: [image],
-    req_key: "",
-    scale: 0.5,
-    seed: 0,
-    width: 1200,
+    force_single: false,
     height: 1600,
+    image_urls: [image],
+    prompt: prompt,
+    req_key: "jimeng_t2i_v40",
+    scale: 0.5,
+    width: 1200,
     batchSize: 1,
   };
 
@@ -120,8 +123,7 @@ export async function rewriteText(title: string) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzU5MjM0ODk4MzgwfQ.YHuVJiCqFscyMXzMhlRJPG09HCn56CB37-6p7jcRuRc",
+        Authorization: token,
       },
       body: JSON.stringify(imageParams),
     }
@@ -170,8 +172,7 @@ async function getTaskHistory(taskId: string): Promise<HistoryItem | null> {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzU1Njg3MDk3ODY0fQ.bIw81zZ0soFD-BMcEWJ10qh76UEBA9nlhLV__xgFaXw",
+          Authorization: token,
         },
         body: JSON.stringify({
           limit: 10,

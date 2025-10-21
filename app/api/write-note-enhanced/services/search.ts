@@ -1,7 +1,8 @@
 /**
- * 搜索服务模块
+ * 搜索服务模块（统一复用 service 层）
  */
 
+import { webSearch } from "@/service/web-search";
 import { WebPageItem, WebSearchResponse } from "../types";
 import { retryWithLogging } from "../utils/retry";
 
@@ -13,28 +14,26 @@ import { retryWithLogging } from "../utils/retry";
 export async function performWebSearch(
   searchQuery: string
 ): Promise<WebSearchResponse> {
-  return retryWithLogging(async () => {
-    const response = await fetch("https://api.bochaai.com/v1/web-search", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer sk-dff2e9dc60824e2f8c775c4649ad623d",
-      },
-      body: JSON.stringify({ query: searchQuery, count: 20 }),
-    });
+  return retryWithLogging(
+    async () => {
+      const data = await webSearch(searchQuery);
 
-    const data = await response.json();
+      if (
+        !data ||
+        data.code !== 200 ||
+        !data.data?.webPages?.value ||
+        data.data.webPages.value.length < 1
+      ) {
+        throw new Error(
+          `Search failed or returned empty results for query: "${searchQuery}"`
+        );
+      }
 
-    if (
-      data.code !== 200 ||
-      !data.data?.webPages?.value ||
-      data.data.webPages.value.length < 1
-    ) {
-      throw new Error("Search returned invalid or empty results");
-    }
-
-    return data as WebSearchResponse;
-  }, "执行网络搜索");
+      return data as WebSearchResponse;
+    },
+    "执行网络搜索",
+    2
+  );
 }
 
 /**

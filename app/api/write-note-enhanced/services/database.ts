@@ -36,12 +36,17 @@ export async function getAvailableNote(): Promise<Note> {
  * @returns Promise<void>
  */
 export async function markNoteAsUsed(noteId: string): Promise<void> {
-  return retryWithLogging(async () => {
+  // 标记笔记为已使用不需要重试，失败了就失败了
+  try {
     await db
       .update(xinhongNotes)
       .set({ used: true })
       .where(eq(xinhongNotes.id, noteId));
-  }, "标记笔记为已使用");
+    console.log(`笔记 ${noteId} 已标记为已使用`);
+  } catch (error) {
+    console.error(`标记笔记 ${noteId} 为已使用失败:`, error);
+    // 不抛出错误，避免中断主流程
+  }
 }
 
 /**

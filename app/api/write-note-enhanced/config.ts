@@ -6,7 +6,7 @@
 export const RETRY_CONFIG = {
   MAX_RETRIES: 3,
   RETRY_DELAY: 2000, // 毫秒
-  MAX_NOTES_TO_TRY: 5, // 最多尝试的笔记数量
+  MAX_NOTES_TO_TRY: 3, // 最多尝试的笔记数量（降低到3避免浪费）
 } as const;
 
 // API配置

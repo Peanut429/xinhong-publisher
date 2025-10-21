@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:all": "node scripts/batch-generate-articles.js",
+    "generate:quick": "node scripts/quick-generate.js",
+    "generate:account": "node scripts/quick-generate.js --account",
+    "generate:help": "node scripts/quick-generate.js --help"
   },
   "dependencies": {
     "@ai-sdk/deepseek": "^1.0.5",

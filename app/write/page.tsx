@@ -115,6 +115,8 @@ const phoneNumberMap = {
   "8134e653-36c1-426f-b219-4318a7b2bfe6": "13142102709",
   "f60b7f06-ce6a-4ab4-8fbf-2737257407f0": "18901643836",
   "55c8c668-54f3-4d31-a031-e9fa723c74aa": "18901764336",
+  "f60b7f06-ce6a-4ab4-8fbf-2737257407gh": "13386027991",
+  "f60b7f06-ce6a-4ab4-8fbf-2737257407gf": "18918722354",
 };
 
 export default function WritePage() {
@@ -127,7 +129,9 @@ export default function WritePage() {
 
   const { mutate: writeNote, isPending } = useMutation({
     mutationFn: async (accountId: string) => {
-      const res = await fetch("/api/write-note", {
+      setNote(null);
+      setImage(null);
+      const res = await fetch("/api/write-note-enhanced", {
         method: "POST",
         body: JSON.stringify({
           accountId,
@@ -175,6 +179,14 @@ export default function WritePage() {
           <Label className="flex items-center gap-3 cursor-pointer">
             <RadioGroupItem value="55c8c668-54f3-4d31-a031-e9fa723c74aa" />
             七月
+          </Label>
+          <Label className="flex items-center gap-3 cursor-pointer">
+            <RadioGroupItem value="f60b7f06-ce6a-4ab4-8fbf-2737257407gh" />
+            小李说车
+          </Label>
+          <Label className="flex items-center gap-3 cursor-pointer">
+            <RadioGroupItem value="f60b7f06-ce6a-4ab4-8fbf-2737257407gf" />
+            梅子说车
           </Label>
         </RadioGroup>
         <Button onClick={() => writeNote(accountId)} disabled={isPending}>

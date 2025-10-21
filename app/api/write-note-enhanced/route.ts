@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     console.log("🚀 开始处理任务...");
     console.log(`👤 Account ID: ${accountId}, 📱 Phone: ${phoneNumber}`);
 
-    // 主处理流程
+    // 主处理流程（仅增强重试，不改变返回结构）
     const result = await processNoteWithFallback({
       accountId,
       phoneNumber,
@@ -42,11 +42,8 @@ export async function POST(request: NextRequest) {
     const processingTime = Date.now() - startTime;
     console.log(`✅ 任务处理完成，耗时: ${processingTime}ms`);
 
-    return NextResponse.json({
-      ...result,
-      processingTime,
-      timestamp: new Date().toISOString(),
-    });
+    // 老版直接返回顶层业务数据字段
+    return NextResponse.json(result.data);
   } catch (error) {
     const processingTime = Date.now() - startTime;
     console.error(`❌ 任务最终失败，耗时: ${processingTime}ms`, error);

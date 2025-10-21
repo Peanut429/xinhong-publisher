@@ -5,7 +5,6 @@
 export interface SearchQuery {
   search_query: string;
   reason: string;
-  topic: string[];
 }
 
 export interface Article {

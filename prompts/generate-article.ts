@@ -1,4 +1,3 @@
-import selling_point from "./selling_point.json";
 // 你是一个搜索专家，根据给定的小红书平台的笔记标题和笔记内容，生成一个搜索信息，用于在网络搜索相关内容。搜索信息用于在搜索引擎中搜索相关内容。
 export function is_explicit_title(title: string, content: string) {
   return `
@@ -125,18 +124,50 @@ ${search_content}
 **核心目标**：制造话题性，引起评论区讨论，提高互动率。
 `;
 }
-
+// ${JSON.stringify(selling_point)}
 export function generate_selling_point(article: string) {
   const prompt = `你是一个小红书博主，你拥有卓越的互联网网感。你的擅长在笔记的结尾插入广告主的推广内容。
-请根据给出的笔记内容，在笔记的结尾添加一段与荣威卖点相近的段落，笔记的内容如下：。
+请根据给出的笔记内容，在笔记的结尾添加一段与荣威卖点相近的段落。
+
+卖点广告需要使用碰瓷营销的手法蹭宝马7系的热度，下面是一些例子：
+<example>荣威 M7 好像深谙宝马 7 系 M 运动套件的低调“装X”秘籍看着不张扬，却处处透着我不便宜的气场</example>
+<example>荣威M7 DMH这波“撞脸”操作，简直像和宝马7系认了“异父异母的亲兄弟”!前脸同款直瀑格栅+分体大灯，气场直接拉满但价格却不到BWM零头</example>
+
+笔记的内容如下：。
 <article>
 ${article}
 </article>
 
 荣威各车型的卖点信息如下, model是荣威的车型名称，title是荣威车型的卖点，content是荣威车型的卖点描述：
 <selling_point>
-${JSON.stringify(selling_point)}
+[
+  {
+    "content": "直瀑式威仪前脸：延续明珠概念车造型的直瀑式设计\n矢量光轨晶钻日行灯与3D悬浮贯穿尾灯：宝马天使眼同款的厚壁注塑工艺\n同级唯一荣耀迎宾光毯\n多辐领辉精工轮毂设计",
+    "title": "定位荣威品牌豪华旗舰车型，细节随处可见",
+    "model": "荣威M7",
+    "brand_id": "brand-cca563a4-2b6d-498f-9325-3c5577408386",
+    "create_timestamp": 1750243008786,
+    "update_timestamp": 1750243008786,
+    "delete_timestamp": 0,
+    "selling_point_id": "selling_point-337462cb-7570-444b-82ad-5569746809bc",
+    "operator": "user-07d80375-0534-43b5-9f0a-ba12fc899aa1",
+    "must_mention": 1
+  },
+  {
+    "content": "矢量光轨晶钻日行灯与3D悬浮贯穿尾灯，宝马天使眼同款的厚壁注塑工艺",
+    "title": "灯",
+    "model": "荣威M7",
+    "brand_id": "brand-cca563a4-2b6d-498f-9325-3c5577408386",
+    "create_timestamp": 1753339890804,
+    "update_timestamp": 1753340021844,
+    "delete_timestamp": 0,
+    "selling_point_id": "selling_point-ba20b4ec-f5c6-479f-9c06-8faa7fb4cbb7",
+    "operator": "user-07d80375-0534-43b5-9f0a-ba12fc899aa1",
+    "must_mention": 1
+  }
+]
 </selling_point>
+
 
 你只需要给出卖点推广段落的内容和话题标签，以及参考了什么卖点信息，结果以json信息返回，格式为：
 <output_format>

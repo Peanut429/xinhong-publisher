@@ -23,6 +23,7 @@ export default function ImportDataPage() {
     null
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [isDragOver, setIsDragOver] = useState(false);
   const [importResult, setImportResult] = useState<{
     success: boolean;
     message: string;
@@ -58,6 +59,51 @@ export default function ImportDataPage() {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       handleFileSelect(selectedFile);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // 只有当鼠标真正离开拖拽区域时才设置为false
+    if (e.currentTarget && !e.currentTarget.contains(e.relatedTarget as Node)) {
+      setIsDragOver(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+
+    const files = Array.from(e.dataTransfer.files);
+    const excelFile = files.find(
+      (file) =>
+        file.type ===
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+        file.type === "application/vnd.ms-excel" ||
+        file.name.endsWith(".xlsx") ||
+        file.name.endsWith(".xls")
+    );
+
+    if (excelFile) {
+      handleFileSelect(excelFile);
+    } else {
+      setImportResult({
+        success: false,
+        message: "请选择Excel文件（.xlsx 或 .xls格式）",
+      });
     }
   };
 
@@ -110,6 +156,7 @@ export default function ImportDataPage() {
     setPreviewData([]);
     setProcessedData(null);
     setImportResult(null);
+    setIsDragOver(false);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -123,7 +170,17 @@ export default function ImportDataPage() {
       </div>
 
       {/* 文件上传区域 */}
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors">
+      <div
+        className={`border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200 ${
+          isDragOver
+            ? "border-blue-500 bg-blue-50 scale-105"
+            : "border-gray-300 hover:border-gray-400"
+        }`}
+        onDragOver={handleDragOver}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
         <input
           ref={fileInputRef}
           type="file"
@@ -134,16 +191,33 @@ export default function ImportDataPage() {
 
         {!file ? (
           <div className="space-y-4">
-            <FileSpreadsheet className="mx-auto h-16 w-16 text-gray-400" />
+            <FileSpreadsheet
+              className={`mx-auto h-16 w-16 transition-colors duration-200 ${
+                isDragOver ? "text-blue-500" : "text-gray-400"
+              }`}
+            />
             <div>
-              <p className="text-lg font-medium text-gray-900">选择Excel文件</p>
+              <p
+                className={`text-lg font-medium transition-colors duration-200 ${
+                  isDragOver ? "text-blue-600" : "text-gray-900"
+                }`}
+              >
+                {isDragOver ? "释放鼠标以上传文件" : "选择Excel文件"}
+              </p>
               <p className="text-sm text-gray-500 mt-1">
                 支持 .xlsx 和 .xls 格式，文件应包含必要的列标题
               </p>
+              {isDragOver && (
+                <p className="text-sm text-blue-600 mt-2 font-medium">
+                  拖拽文件到此处释放即可上传
+                </p>
+              )}
             </div>
             <Button
               onClick={() => fileInputRef.current?.click()}
-              className="mt-4"
+              className={`mt-4 transition-all duration-200 ${
+                isDragOver ? "bg-blue-600 hover:bg-blue-700" : ""
+              }`}
             >
               <Upload className="size-4 mr-2" />
               选择文件
