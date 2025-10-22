@@ -1,3 +1,15 @@
+interface BoChaValueItem {
+  id: string;
+  name: string;
+  url: string;
+  displayUrl: string;
+  snippet: string;
+  siteName: string;
+  siteIcon: string;
+  datePublished: string;
+  dateLastCrawled: string;
+}
+
 export async function webSearch(keywords: string) {
   const response = await fetch("https://api.bochaai.com/v1/web-search", {
     method: "POST",
@@ -10,5 +22,5 @@ export async function webSearch(keywords: string) {
 
   const data = await response.json();
 
-  return data;
+  return (data.data.webPages.value as BoChaValueItem[]) ?? [];
 }

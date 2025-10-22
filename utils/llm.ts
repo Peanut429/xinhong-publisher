@@ -11,6 +11,11 @@ export const deepseek = createDeepSeek({
   baseURL: "https://api.siliconflow.cn/v1",
 });
 
+export const googleGenerate = createGoogleGenerativeAI({
+  apiKey: "AIzaSyA-uPFW2XeGHCkdwVS4kcgI7WwKbprOuJA",
+  baseURL: "http://40.76.59.42/forward/google_api/v1beta",
+});
+
 export const google = createGoogleGenerativeAI({
   apiKey: "AIzaSyA-uPFW2XeGHCkdwVS4kcgI7WwKbprOuJA",
   baseURL: "http://40.76.59.42/forward/google_api/stream/v1beta",

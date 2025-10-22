@@ -125,11 +125,11 @@ export async function processSingleNote(
 export async function processNoteWithFallback(
   options: ProcessNoteOptions
 ): Promise<ProcessResult> {
-  const { accountId, phoneNumber, noteIndex = 0 } = options;
+  const { accountId, phoneNumber } = options;
   const maxNotesToTry = RETRY_CONFIG.MAX_NOTES_TO_TRY;
 
   let lastError: Error | null = null;
-  let processedNoteIds: string[] = [];
+  const processedNoteIds: string[] = [];
 
   // 不使用外层重试，只在内部处理多篇笔记
   for (let i = 0; i < maxNotesToTry; i++) {
