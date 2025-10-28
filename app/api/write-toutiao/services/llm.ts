@@ -16,12 +16,21 @@ export async function generateToutiaoArticle(): Promise<ToutiaoArticle> {
     }
     \`\`\`
   }
-  </output_format>`
+  </output_format>`,
+    {
+      onStepFinish: async ({ text, toolResults }) => {
+        console.log(
+          "toolResults",
+          toolResults.map((toolResult) => toolResult.payload.toolName)
+        );
+      },
+      maxSteps: 20,
+    }
   );
 
   const articleJson = extractJsonFromText<ToutiaoArticle>(result.text);
   if (!articleJson) {
-    throw new Error("Failed to parse article JSON");
+    throw new Error("Failed to parse article JSON, response: " + result.text);
   }
   return articleJson;
 }

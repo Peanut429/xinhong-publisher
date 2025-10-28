@@ -18,7 +18,7 @@ export async function retryWithLogging<T>(
   maxRetries: number = RETRY_CONFIG.MAX_RETRIES,
   delay: number = RETRY_CONFIG.RETRY_DELAY
 ): Promise<T> {
-  let lastError: Error;
+  let lastError: Error | null = null;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
@@ -50,7 +50,9 @@ export async function retryWithLogging<T>(
   }
 
   throw new Error(
-    `${operation}失败，已重试 ${maxRetries} 次: ${lastError.message}`
+    `${operation}失败，已重试 ${maxRetries} 次: ${
+      lastError?.message || "未知错误"
+    }`
   );
 }
 
@@ -77,7 +79,7 @@ export async function retryWithExponentialBackoff<T>(
   maxRetries: number = RETRY_CONFIG.MAX_RETRIES,
   baseDelay: number = 1000
 ): Promise<T> {
-  let lastError: Error;
+  let lastError: Error | null = null;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
@@ -112,6 +114,8 @@ export async function retryWithExponentialBackoff<T>(
   }
 
   throw new Error(
-    `${operation}失败，已重试 ${maxRetries} 次: ${lastError.message}`
+    `${operation}失败，已重试 ${maxRetries} 次: ${
+      lastError?.message || "未知错误"
+    }`
   );
 }

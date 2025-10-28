@@ -34,15 +34,19 @@ export const getDongchediInfo = createTool({
       })
     )
     .describe("汽车资讯信息"),
-  execute: async () => {
+  execute: async ({ context }) => {
+    const page = context.page;
+    console.log("获取懂车帝资讯页码: ", page);
     const response = await fetch(
-      `https://www.dongchedi.com/motor/pc/content/get_static?aid=1839&app_name=auto_web_pc&count=48&channel=usage&page=1`
+      `https://www.dongchedi.com/motor/pc/content/get_static?aid=1839&app_name=auto_web_pc&count=48&channel=usage&page=${page}`
     );
     const data = (await response.json()) as DongchediResponse;
 
     if (!data.data?.news?.length) {
       throw new Error("No data found");
     }
+
+    console.log("获取到懂车帝资讯数量: ", data.data.news.length);
 
     return data.data.news.map((item) => ({
       title: item.title,

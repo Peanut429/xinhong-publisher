@@ -49,6 +49,8 @@ count: Number of results (1-50, default 10)`,
   execute: async ({ context }) => {
     const keywords = context.keywords;
     const result = await webSearch(keywords);
+
+    console.log("搜索结果数量: ", result.length);
     return { content: result };
   },
 });

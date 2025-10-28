@@ -51,7 +51,7 @@ const templates = [
 ];
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzYxMjI0NDgzODI0fQ.nMt5e96c6prWP3KGJDnszLowriEVHY_wzyDEmgH_VrA";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJvd05sTzVraElzN2xQNEk4N0U5a3kxaU5fUnhNIiwiZXhwaXJlVGltZXN0YW1wIjoxNzYxOTAzNzE3MzMwfQ.l1muaPO33izBG-dh97Zs_g8fmHCpimg1Cc6e0p83UN8";
 
 export async function generateImage(title: string) {
   // 构建请求参数，设置默认值

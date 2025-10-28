@@ -22,5 +22,5 @@ export async function webSearch(keywords: string) {
 
   const data = await response.json();
 
-  return (data.data.webPages.value as BoChaValueItem[]) ?? [];
+  return (data.data?.webPages?.value as BoChaValueItem[]) ?? [];
 }

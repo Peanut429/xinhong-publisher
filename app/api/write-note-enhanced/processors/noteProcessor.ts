@@ -63,10 +63,10 @@ export async function processSingleNote(
   // 联网搜索
   console.log("开始联网搜索...");
   const searchResult = await performWebSearch(searchQueryJson.search_query);
-  console.log(`搜索到 ${searchResult.data.webPages.value.length} 条结果`);
+  console.log(`搜索到 ${searchResult.length} 条结果`);
 
   // 构建搜索内容
-  const searchContent = buildSearchContent(searchResult.data.webPages.value);
+  const searchContent = buildSearchContent(searchResult);
 
   // 生成文章
   console.log("开始生成文章...");
@@ -157,14 +157,14 @@ export async function processNoteWithFallback(
       console.error(`❌ 处理第 ${i + 1} 篇笔记失败:`, error);
 
       // 如果是搜索失败或内容生成失败，标记当前笔记为已使用
-      if (currentNote && lastError.message.includes("Search")) {
-        try {
-          await markNoteAsUsed(currentNote.id);
-          console.log(`已标记笔记 ${currentNote.id} 为已使用（搜索失败）`);
-        } catch (markError) {
-          console.error(`标记笔记失败:`, markError);
-        }
-      }
+      // if (currentNote && lastError.message.includes("Search")) {
+      //   try {
+      //     await markNoteAsUsed(currentNote.id);
+      //     console.log(`已标记笔记 ${currentNote.id} 为已使用（搜索失败）`);
+      //   } catch (markError) {
+      //     console.error(`标记笔记失败:`, markError);
+      //   }
+      // }
 
       // 如果还有其他笔记可以尝试，继续处理
       if (i < maxNotesToTry - 1) {

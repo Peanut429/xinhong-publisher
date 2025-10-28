@@ -13,23 +13,18 @@ import { retryWithLogging } from "../utils/retry";
  */
 export async function performWebSearch(
   searchQuery: string
-): Promise<WebSearchResponse> {
+): Promise<WebSearchResponse["data"]["webPages"]["value"]> {
   return retryWithLogging(
     async () => {
       const data = await webSearch(searchQuery);
 
-      if (
-        !data ||
-        data.code !== 200 ||
-        !data.data?.webPages?.value ||
-        data.data.webPages.value.length < 1
-      ) {
+      if (data.length < 1) {
         throw new Error(
           `Search failed or returned empty results for query: "${searchQuery}"`
         );
       }
 
-      return data as WebSearchResponse;
+      return data as WebSearchResponse["data"]["webPages"]["value"];
     },
     "执行网络搜索",
     2
